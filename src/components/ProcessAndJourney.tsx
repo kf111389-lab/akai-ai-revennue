@@ -74,7 +74,7 @@ export const ProcessAndJourney: React.FC = () => {
               Implementation Roadmap
             </span>
             <h2 className="font-display text-2xl sm:text-4xl font-extrabold text-[var(--text-primary)] mt-1">
-              FROM REVENUE LEAK TO <span className="text-[var(--accent-primary)]">AUTOMATED WORKFLOW</span>
+              FROM REVENUE LEAK TO <span className="text-[var(--accent-secondary)]">AUTOMATED WORKFLOW</span>
             </h2>
             <p className="mt-3 text-sm sm:text-base text-[var(--text-secondary)]">
               A clear, predictable 5-step engineering process from initial audit to live enterprise system.

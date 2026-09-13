@@ -20,6 +20,45 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onBookCall }) => {
 
   return (
     <header className="sticky top-0 z-50 w-full backdrop-blur-xl bg-[var(--nav-bg)] border-b border-[var(--border-subtle)] transition-all">
+      {/* Top Prestige Brand Strip inspired by reference design */}
+      <div className="bg-[#1E4630] text-[#E8EDE9] text-[11px] font-medium py-1.5 px-4 border-b border-[#2D5A40]">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-3 sm:gap-5 overflow-x-auto no-scrollbar whitespace-nowrap mx-auto sm:mx-0">
+            <span className="flex items-center gap-1.5 text-white font-semibold">
+              <Sparkles className="w-3 h-3 text-[#C59B27]" />
+              Missed Call AI Voice
+            </span>
+            <span className="text-[#C59B27]">✦</span>
+            <span className="flex items-center gap-1.5">
+              &lt;2 Min Lead Response
+            </span>
+            <span className="text-[#C59B27]">✦</span>
+            <span className="flex items-center gap-1.5">
+              Custom n8n Workflows
+            </span>
+            <span className="text-[#C59B27]">✦</span>
+            <span className="flex items-center gap-1.5">
+              Zero Per-Seat SaaS Traps
+            </span>
+            <span className="text-[#C59B27]">✦</span>
+            <span className="flex items-center gap-1.5">
+              Dormant Lead Reactivation
+            </span>
+          </div>
+          <div className="hidden md:flex items-center gap-2 text-[11px] text-[#D0DDD2]">
+            <span>Founder Strategy Call:</span>
+            <a 
+              href="https://calendly.com/fk111389/15-minute-ai-audit-call" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-[#E5B555] font-bold hover:underline"
+            >
+              Farhan Khan (15 Min) →
+            </a>
+          </div>
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Brand Logo */}
         <a 

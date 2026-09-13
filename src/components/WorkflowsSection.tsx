@@ -67,7 +67,7 @@ export const WorkflowsSection: React.FC<WorkflowsSectionProps> = ({ onScrollToAu
             <span>Automated AI Architecture</span>
           </div>
           <h2 className="font-display text-2xl sm:text-4xl font-extrabold text-[var(--text-primary)] tracking-tight">
-            DEEP-DIVE INTO THE <span className="text-[var(--accent-primary)]">AKAI ENGINES</span>
+            DEEP-DIVE INTO THE <span className="text-[var(--accent-secondary)]">AKAI ENGINES</span>
           </h2>
           <p className="mt-3 text-sm sm:text-base text-[var(--text-secondary)]">
             Explore how automated triggers turn missed opportunities into recovered cash flow.

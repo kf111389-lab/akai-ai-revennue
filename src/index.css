@@ -1,7 +1,32 @@
 @import "tailwindcss";
 
 @layer base {
-  :root, [data-theme="obsidian"] {
+  :root, [data-theme="forest"] {
+    --bg-page: #FAF9F5;
+    --bg-surface: #FFFFFF;
+    --bg-card: #FFFFFF;
+    --bg-card-subtle: #F3F6F2;
+    --bg-card-hover: #E9EFE8;
+    --border-subtle: rgba(30, 70, 48, 0.12);
+    --border-medium: rgba(30, 70, 48, 0.22);
+    --border-accent: #1E4630;
+    --text-primary: #142117;
+    --text-secondary: #475B4D;
+    --text-muted: #6B7F71;
+    --accent-primary: #1E4630;
+    --accent-secondary: #B88746;
+    --accent-gold: #C59B27;
+    --accent-glow: rgba(30, 70, 48, 0.16);
+    --badge-bg: rgba(30, 70, 48, 0.08);
+    --badge-text: #1E4630;
+    --badge-border: rgba(30, 70, 48, 0.24);
+    --gradient-brand: linear-gradient(135deg, #1E4630 0%, #285B3F 50%, #B88746 100%);
+    --gradient-text: linear-gradient(135deg, #142117 0%, #1E4630 60%, #B88746 100%);
+    --grid-color: rgba(30, 70, 48, 0.03);
+    --nav-bg: rgba(250, 249, 245, 0.94);
+  }
+
+  [data-theme="obsidian"] {
     --bg-page: #090b10;
     --bg-surface: #0f131a;
     --bg-card: #131722;
@@ -15,6 +40,7 @@
     --text-muted: #64748b;
     --accent-primary: #3b82f6;
     --accent-secondary: #60a5fa;
+    --accent-gold: #fbbf24;
     --accent-glow: rgba(59, 130, 246, 0.18);
     --badge-bg: rgba(59, 130, 246, 0.1);
     --badge-text: #93c5fd;

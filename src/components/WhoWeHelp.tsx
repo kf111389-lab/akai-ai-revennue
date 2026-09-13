@@ -82,7 +82,7 @@ export const WhoWeHelp: React.FC = () => {
             <span>Target Verticals</span>
           </div>
           <h2 className="font-display text-2xl sm:text-4xl font-extrabold text-[var(--text-primary)] tracking-tight">
-            WHO WE <span className="text-[var(--accent-primary)]">HELP</span>
+            WHO WE <span className="text-[var(--accent-secondary)]">HELP</span>
           </h2>
           <p className="mt-3 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
             Lead-heavy businesses where missed calls, slow response times, pending estimates, and appointments directly determine bottom-line revenue.

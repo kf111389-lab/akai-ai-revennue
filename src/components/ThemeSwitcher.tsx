@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Palette, Check, Sun, Moon, Sparkles, Compass } from 'lucide-react';
+import { Palette, Check, Sun, Moon, Sparkles, Compass, TreePine } from 'lucide-react';
 import { useTheme, THEME_OPTIONS, ThemeType } from '../context/ThemeContext';
 
 interface ThemeSwitcherProps {
@@ -25,6 +25,8 @@ export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ variant = 'navbar'
 
   const getThemeIcon = (id: ThemeType) => {
     switch (id) {
+      case 'forest':
+        return <TreePine className="w-3.5 h-3.5 text-[#1E4630]" />;
       case 'light':
         return <Sun className="w-3.5 h-3.5 text-amber-500" />;
       case 'midnight':

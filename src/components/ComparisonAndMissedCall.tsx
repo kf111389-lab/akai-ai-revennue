@@ -26,7 +26,7 @@ export const ComparisonAndMissedCall: React.FC = () => {
               The AkAI Difference
             </span>
             <h2 className="font-display text-2xl sm:text-4xl font-extrabold text-[var(--text-primary)] mt-1">
-              NOT ANOTHER <span className="text-[var(--accent-primary)]">CHATBOT</span>
+              NOT ANOTHER <span className="text-[var(--accent-secondary)]">CHATBOT</span>
             </h2>
             <p className="mt-3 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
               AkAI isn't about slapping another generic chatbot widget on your website and calling it automation. We engineer the entire workflow behind your customer journey — calls, forms, CRM, calendar, follow-up, estimates, and customer retention.

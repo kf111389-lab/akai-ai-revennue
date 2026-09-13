@@ -197,7 +197,7 @@ export const FourPillars: React.FC = () => {
             <span>Comprehensive Architecture</span>
           </div>
           <h2 className="font-display text-2xl sm:text-4xl font-extrabold text-[var(--text-primary)] tracking-tight">
-            FOUR PILLARS OF <span className="text-[var(--accent-primary)]">AKAI</span>
+            FOUR PILLARS OF <span className="text-[var(--accent-secondary)]">AKAI</span>
           </h2>
           <p className="mt-3 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
             Systems designed around the full customer lifecycle — engineered for hardened operational excellence.

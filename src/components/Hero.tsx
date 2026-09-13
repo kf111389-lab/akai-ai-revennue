@@ -28,7 +28,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToAudit }) => {
               {/* Title */}
               <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[var(--text-primary)] leading-[1.08]">
                 FIND THE REVENUE YOUR BUSINESS IS ALREADY{' '}
-                <span className="text-[var(--accent-primary)]">LOSING</span>
+                <span className="text-[var(--accent-secondary)]">LOSING</span>
               </h1>
 
               {/* Subtitle */}

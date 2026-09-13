@@ -31,7 +31,7 @@ export const TrustSection: React.FC<TrustSectionProps> = ({
           </div>
 
           <h2 className="font-display text-2xl sm:text-4xl font-extrabold text-[var(--text-primary)] tracking-tight">
-            BUILT FOR REAL <span className="text-[var(--accent-primary)]">BUSINESS WORKFLOWS</span>
+            BUILT FOR REAL <span className="text-[var(--accent-secondary)]">BUSINESS WORKFLOWS</span>
           </h2>
           
           <p className="mt-2 text-sm sm:text-base text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed">

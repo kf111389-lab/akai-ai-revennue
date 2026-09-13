@@ -21,7 +21,7 @@ export const LiveDemoSection: React.FC<LiveDemoSectionProps> = ({
             <Sparkles className="w-3.5 h-3.5 text-[var(--accent-primary)]" />
           </div>
           <h2 className="font-display text-2xl sm:text-4xl font-extrabold text-[var(--text-primary)] tracking-tight">
-            MEET AKAI — <span className="text-[var(--accent-primary)]">EXPERIENCE AI IN ACTION</span>
+            MEET AKAI — <span className="text-[var(--accent-secondary)]">EXPERIENCE AI IN ACTION</span>
           </h2>
           <p className="mt-3 text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
             Talk directly with the AkAI assistant in real time. Experience conversational logic, instant qualification, and seamless workflow triggers.
