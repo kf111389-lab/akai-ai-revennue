@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Bot, Sparkles, PhoneCall, Calendar, Menu, X, ArrowUpRight } from 'lucide-react';
-import { ThemeSwitcher } from './ThemeSwitcher';
 
 interface NavbarProps {
   onOpenDemo: () => void;
@@ -130,11 +129,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onBookCall }) => {
           </button>
         </nav>
 
-        {/* Right CTA Group with Theme Switcher */}
+        {/* Right CTA Group */}
         <div className="hidden sm:flex items-center gap-3">
-          {/* Smart Theme Switcher */}
-          <ThemeSwitcher variant="navbar" />
-
           <button
             onClick={onOpenDemo}
             className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold text-[var(--accent-primary)] bg-[var(--badge-bg)] border border-[var(--badge-border)] hover:border-[var(--accent-primary)] transition-all cursor-pointer"
@@ -153,9 +149,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onBookCall }) => {
           </button>
         </div>
 
-        {/* Mobile controls: Theme + Menu */}
+        {/* Mobile controls: Menu */}
         <div className="flex items-center gap-2 lg:hidden">
-          <ThemeSwitcher variant="navbar" />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] bg-[var(--bg-card)] border border-[var(--border-subtle)] transition-colors"

@@ -20,7 +20,6 @@ import { ContactAuditForm } from './components/ContactAuditForm';
 import { Footer } from './components/Footer';
 import { MobileStickyBar } from './components/MobileStickyBar';
 import { VoiceDemoModal } from './components/VoiceDemoModal';
-import { ThemeSwitcher } from './components/ThemeSwitcher';
 
 export default function App() {
   const [demoModalOpen, setDemoModalOpen] = useState(false);
@@ -128,9 +127,6 @@ export default function App() {
         onBookCall={handleBookCall}
         onScrollToAudit={handleScrollToAudit}
       />
-
-      {/* Quick Floating Theme Switcher at bottom-right for instant theme toggle */}
-      <ThemeSwitcher variant="floating" />
     </div>
   );
 }

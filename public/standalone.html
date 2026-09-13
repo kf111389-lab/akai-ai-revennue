@@ -32,90 +32,58 @@
   </script>
 
   <style>
-    :root {
-      --bg-page: #090b11;
-      --bg-surface: #0f131d;
-      --bg-card: #131826;
-      --bg-nav: rgba(9, 11, 17, 0.85);
-      --border-subtle: #1f273b;
-      --border-medium: #2e3b59;
-      --border-accent: #3b82f6;
-      --text-primary: #f1f5f9;
-      --text-secondary: #94a3b8;
-      --text-muted: #64748b;
-      --accent-primary: #3b82f6;
-      --accent-secondary: #60a5fa;
-      --accent-glow: rgba(59, 130, 246, 0.18);
-      --badge-bg: rgba(59, 130, 246, 0.12);
-      --badge-border: rgba(59, 130, 246, 0.3);
-      --badge-text: #93c5fd;
-    }
-
-    [data-theme="light"] {
-      --bg-page: #f8fafc;
-      --bg-surface: #ffffff;
-      --bg-card: #f1f5f9;
-      --bg-nav: rgba(255, 255, 255, 0.9);
-      --border-subtle: #e2e8f0;
-      --border-medium: #cbd5e1;
-      --border-accent: #2563eb;
-      --text-primary: #0f172a;
-      --text-secondary: #475569;
-      --text-muted: #64748b;
-      --accent-primary: #2563eb;
-      --accent-secondary: #3b82f6;
-      --accent-glow: rgba(37, 99, 235, 0.12);
-      --badge-bg: rgba(37, 99, 235, 0.08);
-      --badge-border: rgba(37, 99, 235, 0.25);
-      --badge-text: #1d4ed8;
-    }
-
-    [data-theme="navy"] {
-      --bg-page: #060a14;
-      --bg-surface: #0a1122;
-      --bg-card: #0f1b36;
-      --bg-nav: rgba(6, 10, 20, 0.88);
-      --border-subtle: #17274a;
-      --border-medium: #233b70;
-      --border-accent: #0284c7;
-      --text-primary: #f0f9ff;
-      --text-secondary: #93c5fd;
-      --text-muted: #60a5fa;
-      --accent-primary: #0284c7;
-      --accent-secondary: #38bdf8;
-      --accent-glow: rgba(2, 132, 199, 0.22);
-      --badge-bg: rgba(2, 132, 199, 0.12);
-      --badge-border: rgba(2, 132, 199, 0.35);
-      --badge-text: #7dd3fc;
-    }
-
-    [data-theme="emerald"] {
-      --bg-page: #080c0a;
-      --bg-surface: #0d1512;
-      --bg-card: #131f1a;
-      --bg-nav: rgba(8, 12, 10, 0.88);
-      --border-subtle: #1b2e26;
-      --border-medium: #28473a;
-      --border-accent: #10b981;
-      --text-primary: #f0fdf4;
-      --text-secondary: #a7f3d0;
-      --text-muted: #6ee7b7;
-      --accent-primary: #10b981;
-      --accent-secondary: #34d399;
-      --accent-glow: rgba(16, 185, 129, 0.2);
-      --badge-bg: rgba(16, 185, 129, 0.12);
-      --badge-border: rgba(16, 185, 129, 0.35);
-      --badge-text: #6ee7b7;
+    :root, [data-theme="forest"] {
+      --bg-page: #FAF9F5;
+      --bg-surface: #FFFFFF;
+      --bg-card: #FFFFFF;
+      --bg-card-subtle: #F3F6F2;
+      --bg-nav: rgba(250, 249, 245, 0.94);
+      --border-subtle: rgba(30, 70, 48, 0.12);
+      --border-medium: rgba(30, 70, 48, 0.22);
+      --border-accent: #1E4630;
+      --text-primary: #142117;
+      --text-secondary: #475B4D;
+      --text-muted: #6B7F71;
+      --accent-primary: #1E4630;
+      --accent-secondary: #B88746;
+      --accent-gold: #C59B27;
+      --accent-glow: rgba(30, 70, 48, 0.16);
+      --badge-bg: rgba(30, 70, 48, 0.08);
+      --badge-border: rgba(30, 70, 48, 0.24);
+      --badge-text: #1E4630;
     }
 
     body {
       background-color: var(--bg-page);
       color: var(--text-primary);
-      transition: background-color 0.25s ease, color 0.25s ease;
     }
   </style>
 </head>
 <body class="selection:bg-blue-600 selection:text-white font-sans antialiased">
+
+  <!-- TOP ANNOUNCEMENT RIBBON -->
+  <div class="bg-[#1E4630] text-[#E8EDE9] text-[11px] font-medium py-1.5 px-4 border-b border-[#2D5A40]">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3 sm:gap-5 overflow-x-auto no-scrollbar whitespace-nowrap mx-auto sm:mx-0">
+        <span class="flex items-center gap-1.5 text-white font-semibold">
+          <i data-lucide="sparkles" class="w-3 h-3 text-[#C59B27]"></i>
+          Missed Call AI Voice
+        </span>
+        <span class="text-[#C59B27]">✦</span>
+        <span class="flex items-center gap-1.5">&lt;2 Min Lead Response</span>
+        <span class="text-[#C59B27]">✦</span>
+        <span class="flex items-center gap-1.5">Custom n8n Workflows</span>
+        <span class="text-[#C59B27]">✦</span>
+        <span class="flex items-center gap-1.5">Zero Per-Seat SaaS Traps</span>
+      </div>
+      <div class="hidden md:flex items-center gap-2 text-[11px] text-[#D0DDD2]">
+        <span>Founder Strategy Call:</span>
+        <a href="https://calendly.com/fk111389/15-minute-ai-audit-call" target="_blank" rel="noopener noreferrer" class="text-[#E5B555] font-bold hover:underline">
+          Farhan Khan (15 Min) →
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- TOP NAVBAR -->
   <header class="sticky top-0 z-50 border-b border-[var(--border-subtle)] bg-[var(--bg-nav)] backdrop-blur-xl">
@@ -147,13 +115,8 @@
         <a href="#contact" class="hover:text-[var(--accent-primary)] transition-colors">FREE AUDIT</a>
       </nav>
 
-      <!-- Right CTAs & Theme Selector -->
+      <!-- Right CTAs -->
       <div class="flex items-center gap-3">
-        <button onclick="cycleTheme()" class="p-2 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--accent-primary)] text-xs flex items-center gap-1.5" title="Switch Theme">
-          <i data-lucide="palette" class="w-4 h-4"></i>
-          <span id="themeName" class="hidden sm:inline text-[11px] font-mono">Dark</span>
-        </button>
-
         <a href="https://calendly.com/fk111389/15-minute-ai-audit-call" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-2 px-4 py-2.5 rounded-xl font-display text-xs font-bold text-white bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] shadow-md shadow-[var(--accent-glow)] hover:opacity-95 transition-all">
           <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
           <span>BOOK 15-MIN CALL</span>
@@ -410,22 +373,6 @@
   <script>
     // Lucide Icons initialization
     lucide.createIcons();
-
-    // Theme Switcher Logic
-    const themes = ['dark', 'light', 'navy', 'emerald'];
-    const themeLabels = { dark: 'Obsidian', light: 'Alabaster', navy: 'Titanium', emerald: 'Emerald' };
-    let currentThemeIdx = 0;
-
-    function cycleTheme() {
-      currentThemeIdx = (currentThemeIdx + 1) % themes.length;
-      const theme = themes[currentThemeIdx];
-      if (theme === 'dark') {
-        document.documentElement.removeAttribute('data-theme');
-      } else {
-        document.documentElement.setAttribute('data-theme', theme);
-      }
-      document.getElementById('themeName').textContent = themeLabels[theme];
-    }
 
     // Web Speech Synthesis & Recognition
     let recognition = null;
