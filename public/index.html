@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AkAI — AI Revenue Recovery & Business Automation Systems</title>
+  <meta name="description" content="Stop losing leads. We engineer custom AI voice agents, recovery workflows, and automated pipeline intelligence for high-ticket businesses." />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Syne -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --bg-page: #090b11;
+      --bg-surface: #0e121d;
+      --bg-card: #131826;
+      --bg-card-subtle: #171e30;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-medium: rgba(255, 255, 255, 0.16);
+      --border-accent: rgba(59, 130, 246, 0.55);
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --accent-primary: #3b82f6;
+      --accent-secondary: #60a5fa;
+      --accent-glow: rgba(59, 130, 246, 0.22);
+      --badge-bg: rgba(59, 130, 246, 0.12);
+      --badge-border: rgba(59, 130, 246, 0.3);
+      --badge-text: #93c5fd;
+      --bg-nav: rgba(9, 11, 17, 0.85);
+    }
+
+    /* Light Theme Class */
+    body.theme-light {
+      --bg-page: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-subtle: #f1f5f9;
+      --border-subtle: rgba(15, 23, 42, 0.08);
+      --border-medium: rgba(15, 23, 42, 0.16);
+      --border-accent: rgba(37, 99, 235, 0.5);
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --accent-primary: #2563eb;
+      --accent-secondary: #3b82f6;
+      --accent-glow: rgba(37, 99, 235, 0.15);
+      --badge-bg: rgba(37, 99, 235, 0.08);
+      --badge-border: rgba(37, 99, 235, 0.25);
+      --badge-text: #1d4ed8;
+      --bg-nav: rgba(248, 250, 252, 0.9);
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .font-display {
+      font-family: 'Syne', sans-serif;
+    }
+
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .akai-panel {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .akai-panel:hover {
+      border-color: var(--border-accent);
+    }
+
+    /* Equalizer keyframe animation */
+    @keyframes wavePulse {
+      0%, 100% { height: 6px; }
+      50% { height: 26px; }
+    }
+    .wave-bar {
+      width: 3px;
+      border-radius: 2px;
+      animation: wavePulse 1.2s ease-in-out infinite;
+    }
+    .wave-bar:nth-child(2) { animation-delay: 0.15s; }
+    .wave-bar:nth-child(3) { animation-delay: 0.3s; }
+    .wave-bar:nth-child(4) { animation-delay: 0.45s; }
+    .wave-bar:nth-child(5) { animation-delay: 0.6s; }
+    .wave-bar:nth-child(6) { animation-delay: 0.75s; }
+    .wave-bar:nth-child(7) { animation-delay: 0.9s; }
+    .wave-bar:nth-child(8) { animation-delay: 1.05s; }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-page);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-medium);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-primary);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-blue-600 selection:text-white pb-16 md:pb-0">
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="sticky top-0 z-40 w-full backdrop-blur-xl border-b border-[var(--border-subtle)] bg-[var(--bg-nav)] transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#top" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[var(--accent-primary)] to-[var(--accent-secondary)] p-[1.5px] shadow-lg shadow-[var(--accent-glow)] transition-transform group-hover:scale-105">
+          <div class="w-full h-full bg-[var(--bg-card)] rounded-[10px] flex items-center justify-center">
+            <i data-lucide="bot" class="w-5 h-5 text-[var(--accent-primary)]"></i>
+          </div>
+        </div>
+        <div>
+          <span class="font-display text-xl font-extrabold tracking-wider text-[var(--text-primary)]">
+            AK<span class="text-[var(--accent-primary)]">AI</span>
+          </span>
+          <span class="hidden sm:inline-block ml-2 text-[10px] uppercase font-mono tracking-widest text-[var(--badge-text)] bg-[var(--badge-bg)] border border-[var(--badge-border)] px-2 py-0.5 rounded-full">
+            REVENUE RECOVERY
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-7 text-xs font-semibold text-[var(--text-secondary)]">
+        <a href="#revenue-leaks" class="hover:text-[var(--accent-primary)] transition-colors">Revenue Leaks</a>
+        <a href="#workflows" class="hover:text-[var(--accent-primary)] transition-colors">Engines</a>
+        <a href="#pillars" class="hover:text-[var(--accent-primary)] transition-colors">4 Pillars</a>
+        <a href="#who-we-help" class="hover:text-[var(--accent-primary)] transition-colors">Who We Help</a>
+        <a href="#demo-section" class="hover:text-[var(--accent-primary)] transition-colors flex items-center gap-1.5 text-[var(--accent-primary)] font-bold">
+          <i data-lucide="mic" class="w-3.5 h-3.5"></i>
+          Live Voice AI
+        </a>
+      </nav>
+
+      <!-- Right Action CTA -->
+      <div class="flex items-center gap-3">
+        <!-- Theme Toggle Button -->
+        <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2.5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:border-[var(--border-accent)] transition-all cursor-pointer" title="Toggle Light/Dark Theme">
+          <i id="themeIcon" data-lucide="sun" class="w-4 h-4"></i>
+        </button>
+
+        <a href="https://calendly.com/fk111389/15-minute-ai-audit-call" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 px-4.5 py-2.5 rounded-xl font-display text-xs font-bold text-white bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] shadow-md shadow-[var(--accent-glow)] hover:opacity-95 transition-all">
+          <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+          <span>BOOK AUDIT CALL</span>
+        </a>
+
+        <a href="#contact" class="inline-flex sm:hidden items-center px-3 py-2 rounded-xl text-xs font-bold text-white bg-[var(--accent-primary)]">
+          Free Audit
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main id="top">
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-12 pb-16 sm:pt-20 sm:pb-24 overflow-hidden">
+      <!-- Glow background blob -->
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-[var(--accent-glow)] rounded-full blur-[130px] pointer-events-none -z-10"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--badge-bg)] border border-[var(--badge-border)] text-[var(--badge-text)] text-xs font-semibold mb-6">
+          <span class="w-2 h-2 rounded-full bg-[var(--accent-primary)] animate-ping"></span>
+          <span>Enterprise AI Revenue Recovery & Operations</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[var(--text-primary)] max-w-4xl mx-auto leading-[1.12]">
+          WHERE IS YOUR REVENUE <br class="hidden sm:block" />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-primary)] via-[var(--accent-secondary)] to-sky-400">
+            GETTING STUCK?
+          </span>
+        </h1>
+
+        <!-- Subheading -->
+        <p class="mt-6 text-base sm:text-lg text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed">
+          AkAI identifies missed calls, slow response times, and unclosed estimates — building custom voice agents and n8n automations that recover trapped revenue.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <a href="#demo-section" class="px-7 py-4 rounded-xl font-display text-sm font-extrabold text-white bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] hover:opacity-95 shadow-xl shadow-[var(--accent-glow)] flex items-center gap-2.5 transition-all">
+            <i data-lucide="mic" class="w-4 h-4"></i>
+            <span>TALK TO AKAI VOICE DEMO</span>
+          </a>
+
+          <a href="https://calendly.com/fk111389/15-minute-ai-audit-call" target="_blank" rel="noopener noreferrer" class="px-7 py-4 rounded-xl font-display text-sm font-bold text-[var(--text-primary)] bg-[var(--bg-surface)] border border-[var(--border-medium)] hover:border-[var(--border-accent)] flex items-center gap-2.5 transition-all">
+            <i data-lucide="calendar" class="w-4 h-4 text-[var(--accent-primary)]"></i>
+            <span>BOOK 15-MIN CALL</span>
+          </a>
+        </div>
+
+        <!-- Founder credibility tag -->
+        <div class="mt-8 flex items-center justify-center gap-2 text-xs text-[var(--text-muted)]">
+          <i data-lucide="shield-check" class="w-4 h-4 text-[var(--accent-primary)]"></i>
+          <span>Systems Architect: <strong>Farhan Khan</strong> (fk111389@gmail.com) • Production-Grade n8n & Telephony</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TECH LOGOS STRIP -->
+    <section class="py-7 border-y border-[var(--border-subtle)] bg-[var(--bg-surface)]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col items-center justify-center text-center mb-4">
+          <div class="inline-flex items-center gap-2 text-xs font-mono tracking-widest text-[var(--accent-primary)] uppercase">
+            <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+            <span>Engineered with Production-Grade Infrastructure</span>
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5">
+          <div class="px-3.5 py-1.5 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] flex items-center gap-2">
+            <span class="text-xs font-semibold text-[var(--text-primary)]">Google Speech Engine</span>
+            <span class="text-[10px] font-mono text-[var(--accent-primary)] bg-[var(--badge-bg)] px-1.5 py-0.5 rounded">Native Voice</span>
+          </div>
+          <div class="px-3.5 py-1.5 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] flex items-center gap-2">
+            <span class="text-xs font-semibold text-[var(--text-primary)]">OpenAI GPT-4o</span>
+            <span class="text-[10px] font-mono text-[var(--accent-primary)] bg-[var(--badge-bg)] px-1.5 py-0.5 rounded">Reasoning Core</span>
+          </div>
+          <div class="px-3.5 py-1.5 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] flex items-center gap-2">
+            <span class="text-xs font-semibold text-[var(--text-primary)]">ElevenLabs</span>
+            <span class="text-[10px] font-mono text-[var(--accent-primary)] bg-[var(--badge-bg)] px-1.5 py-0.5 rounded">Neural Synthesis</span>
+          </div>
+          <div class="px-3.5 py-1.5 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] flex items-center gap-2">
+            <span class="text-xs font-semibold text-[var(--text-primary)]">Twilio</span>
+            <span class="text-[10px] font-mono text-[var(--accent-primary)] bg-[var(--badge-bg)] px-1.5 py-0.5 rounded">Telephony & SMS</span>
+          </div>
+          <div class="px-3.5 py-1.5 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] flex items-center gap-2">
+            <span class="text-xs font-semibold text-[var(--text-primary)]">n8n</span>
+            <span class="text-[10px] font-mono text-[var(--accent-primary)] bg-[var(--badge-bg)] px-1.5 py-0.5 rounded">Automation</span>
+          </div>
+          <div class="px-3.5 py-1.5 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] flex items-center gap-2">
+            <span class="text-xs font-semibold text-[var(--text-primary)]">Cloudflare</span>
+            <span class="text-[10px] font-mono text-[var(--accent-primary)] bg-[var(--badge-bg)] px-1.5 py-0.5 rounded">Edge Reliability</span>
+          </div>
+          <div class="px-3.5 py-1.5 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] flex items-center gap-2">
+            <span class="text-xs font-semibold text-[var(--text-primary)]">Calendly</span>
+            <span class="text-[10px] font-mono text-[var(--accent-primary)] bg-[var(--badge-bg)] px-1.5 py-0.5 rounded">Scheduling Sync</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: 7 REVENUE LEAKS -->
+    <section id="revenue-leaks" class="py-16 sm:py-20 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-500 text-xs font-semibold mb-3">
+            <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
+            <span>Root-Cause Diagnostic</span>
+          </div>
+          <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-[var(--text-primary)] tracking-tight">
+            WHERE IS YOUR REVENUE GETTING <span class="text-rose-500">STUCK?</span>
+          </h2>
+          <p class="mt-3 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+            Most businesses don't need another generic tool. They need to locate and repair the critical gaps between lead acquisition, response, quotation, and customer retention.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          
+          <div class="akai-panel rounded-2xl p-6 flex flex-col justify-between group">
+            <div>
+              <div class="w-11 h-11 rounded-xl bg-[var(--badge-bg)] border border-[var(--badge-border)] flex items-center justify-center mb-4 text-[var(--accent-primary)]">
+                <i data-lucide="phone-missed" class="w-5 h-5"></i>
+              </div>
+              <h3 class="font-display text-sm sm:text-base font-bold text-[var(--text-primary)] mb-2 tracking-wide">MISSED CALLS</h3>
+              <p class="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+                Potential customers call when your team is busy, after hours, or on another line.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-[var(--border-subtle)] text-[11px] font-mono text-[var(--accent-primary)]">
+              Impact: 62% of callers dial a competitor
+            </div>
+          </div>
+
+          <div class="akai-panel rounded-2xl p-6 flex flex-col justify-between group">
+            <div>
+              <div class="w-11 h-11 rounded-xl bg-[var(--badge-bg)] border border-[var(--badge-border)] flex items-center justify-center mb-4 text-sky-400">
+                <i data-lucide="timer" class="w-5 h-5"></i>
+              </div>
+              <h3 class="font-display text-sm sm:text-base font-bold text-[var(--text-primary)] mb-2 tracking-wide">SLOW LEAD RESPONSE</h3>
+              <p class="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+                Inbound web leads lose intent while waiting hours for a manual human callback.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-[var(--border-subtle)] text-[11px] font-mono text-[var(--accent-primary)]">
+              Impact: Conversion drops 8x after 5 mins
+            </div>
+          </div>
+
+          <div class="akai-panel rounded-2xl p-6 flex flex-col justify-between group">
+            <div>
+              <div class="w-11 h-11 rounded-xl bg-[var(--badge-bg)] border border-[var(--badge-border)] flex items-center justify-center mb-4 text-blue-400">
+                <i data-lucide="file-x" class="w-5 h-5"></i>
+              </div>
+              <h3 class="font-display text-sm sm:text-base font-bold text-[var(--text-primary)] mb-2 tracking-wide">UNFINISHED ESTIMATES</h3>
+              <p class="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+                Proposals and quotes are emailed, but structured follow-up halts after day 2.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-[var(--border-subtle)] text-[11px] font-mono text-[var(--accent-primary)]">
+              Impact: 35% of deal pipeline dies in quotes
+            </div>
+          </div>
+
+          <div class="akai-panel rounded-2xl p-6 flex flex-col justify-between group">
+            <div>
+              <div class="w-11 h-11 rounded-xl bg-[var(--badge-bg)] border border-[var(--badge-border)] flex items-center justify-center mb-4 text-rose-400">
+                <i data-lucide="user-x" class="w-5 h-5"></i>
+              </div>
+              <h3 class="font-display text-sm sm:text-base font-bold text-[var(--text-primary)] mb-2 tracking-wide">NO-SHOW APPOINTMENTS</h3>
+              <p class="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+                Consultations disappear without proactive 1-click confirmation or rescue.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-[var(--border-subtle)] text-[11px] font-mono text-[var(--accent-primary)]">
+              Impact: Wastes costly sales rep calendar slots
+            </div>
+          </div>
+
+          <div class="akai-panel rounded-2xl p-6 flex flex-col justify-between group">
+            <div>
+              <div class="w-11 h-11 rounded-xl bg-[var(--badge-bg)] border border-[var(--badge-border)] flex items-center justify-center mb-4 text-amber-400">
+                <i data-lucide="archive" class="w-5 h-5"></i>
+              </div>
+              <h3 class="font-display text-sm sm:text-base font-bold text-[var(--text-primary)] mb-2 tracking-wide">FORGOTTEN OLD LEADS</h3>
+              <p class="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+                Past enquiries from 3-12 months ago sit dormant and untouched inside your CRM.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-[var(--border-subtle)] text-[11px] font-mono text-[var(--accent-primary)]">
+              Impact: Hidden pipeline equity left unharvested
+            </div>
+          </div>
+
+          <div class="akai-panel rounded-2xl p-6 flex flex-col justify-between group">
+            <div>
+              <div class="w-11 h-11 rounded-xl bg-[var(--badge-bg)] border border-[var(--badge-border)] flex items-center justify-center mb-4 text-teal-400">
+                <i data-lucide="git-branch" class="w-5 h-5"></i>
+              </div>
+              <h3 class="font-display text-sm sm:text-base font-bold text-[var(--text-primary)] mb-2 tracking-wide">SALES PIPELINE GAPS</h3>
+              <p class="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+                Leads progress through stages without automated next-action prompts or reminders.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-[var(--border-subtle)] text-[11px] font-mono text-[var(--accent-primary)]">
+              Impact: Deals slip through cracks between handoffs
+            </div>
+          </div>
+
+          <div class="akai-panel rounded-2xl p-6 flex flex-col justify-between group">
+            <div>
+              <div class="w-11 h-11 rounded-xl bg-[var(--badge-bg)] border border-[var(--badge-border)] flex items-center justify-center mb-4 text-orange-400">
+                <i data-lucide="unlink" class="w-5 h-5"></i>
+              </div>
+              <h3 class="font-display text-sm sm:text-base font-bold text-[var(--text-primary)] mb-2 tracking-wide">BROKEN WORKFLOWS</h3>
+              <p class="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+                Disconnected webhooks, SMS triggers, or sync steps fail silently with zero alerts.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-[var(--border-subtle)] text-[11px] font-mono text-[var(--accent-primary)]">
+              Impact: Silent automation breakdowns burn ad spend
+            </div>
+          </div>
+
+          <!-- Call to action card -->
+          <div class="akai-panel rounded-2xl p-6 border-dashed border-[var(--border-medium)] bg-[var(--bg-surface)] flex flex-col justify-center items-center text-center">
+            <h3 class="font-display text-base sm:text-lg font-extrabold text-[var(--text-primary)] mb-2">
+              How Many Leaks Cost You Today?
+            </h3>
+            <p class="text-xs text-[var(--text-secondary)] mb-5">
+              Let AkAI run an automated diagnostic on your lead pipeline and workflow infrastructure.
+            </p>
+            <a href="#contact" class="w-full py-3 px-4 rounded-xl font-display text-xs font-bold bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white shadow-md shadow-[var(--accent-glow)] flex items-center justify-center gap-2">
+              <span>AUDIT MY LEAKS</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: FOUR PILLARS -->
+    <section id="pillars" class="py-16 sm:py-20 relative bg-[var(--bg-surface)] border-t border-[var(--border-subtle)]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--badge-bg)] border border-[var(--badge-border)] text-[var(--badge-text)] text-xs font-semibold mb-3">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[var(--accent-primary)]"></i>
+            <span>Comprehensive Architecture</span>
+          </div>
+          <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-[var(--text-primary)] tracking-tight">
+            FOUR PILLARS OF <span class="text-[var(--accent-primary)]">AKAI</span>
+          </h2>
+          <p class="mt-3 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+            Systems designed around the full customer lifecycle — engineered for hardened operational excellence.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <div class="akai-panel rounded-2xl p-6">
+            <span class="text-[11px] font-mono text-[var(--accent-primary)] font-bold">PILLAR 01</span>
+            <h3 class="font-display text-lg font-bold text-[var(--text-primary)] mt-1 mb-2">REVENUE RECOVERY</h3>
+            <p class="text-xs text-[var(--text-secondary)] mb-4">Identify and salvage hidden revenue leaking across your current pipeline.</p>
+            <ul class="space-y-2 text-xs text-[var(--text-secondary)]">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[var(--accent-primary)]"></i> AI Leak Detection</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[var(--accent-primary)]"></i> AI Estimate Recovery</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[var(--accent-primary)]"></i> Old Lead Reactivation</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[var(--accent-primary)]"></i> Missed-Call Recovery</li>
+            </ul>
+          </div>
+
+          <div class="akai-panel rounded-2xl p-6">
+            <span class="text-[11px] font-mono text-[var(--accent-primary)] font-bold">PILLAR 02</span>
+            <h3 class="font-display text-lg font-bold text-[var(--text-primary)] mt-1 mb-2">AI COMMUNICATION</h3>
+            <p class="text-xs text-[var(--text-secondary)] mb-4">Instant, human-sounding inbound and outbound multi-channel engagement.</p>
+            <ul class="space-y-2 text-xs text-[var(--text-secondary)]">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[var(--accent-primary)]"></i> AI Voice Agents (24/7)</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[var(--accent-primary)]"></i> SMS Automation</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[var(--accent-primary)]"></i> WhatsApp Integration</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[var(--accent-primary)]"></i> AI Lead Qualification</li>
+            </ul>
+          </div>
+
+          <div class="akai-panel rounded-2xl p-6">
+            <span class="text-[11px] font-mono text-[var(--accent-primary)] font-bold">PILLAR 03</span>
+            <h3 class="font-display text-lg font-bold text-[var(--text-primary)] mt-1 mb-2">OPERATIONS & WORKFLOWS</h3>
+            <p class="text-xs text-[var(--text-secondary)] mb-4">Frictionless backend plumbing that keeps your stack aligned in real time.</p>
+            <ul class="space-y-2 text-xs text-[var(--text-secondary)]">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[var(--accent-primary)]"></i> CRM Automation</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[var(--accent-primary)]"></i> Calendar Synchronization</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[var(--accent-primary)]"></i> Custom n8n Workflows</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[var(--accent-primary)]"></i> AI Watchdog Monitoring</li>
+            </ul>
+          </div>
+
+          <div class="akai-panel rounded-2xl p-6">
+            <span class="text-[11px] font-mono text-[var(--accent-primary)] font-bold">PILLAR 04</span>
+            <h3 class="font-display text-lg font-bold text-[var(--text-primary)] mt-1 mb-2">CUSTOMER RETENTION</h3>
+            <p class="text-xs text-[var(--text-secondary)] mb-4">Turn one-time purchasers into repeat clients and 5-star brand advocates.</p>
+            <ul class="space-y-2 text-xs text-[var(--text-secondary)]">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[var(--accent-primary)]"></i> 5-Star Review Requests</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[var(--accent-primary)]"></i> Reactivation Campaigns</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[var(--accent-primary)]"></i> Smart Reminders</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[var(--accent-primary)]"></i> Automated Follow-ups</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: LIVE INTERACTIVE VOICE DEMO -->
+    <section id="demo-section" class="py-16 sm:py-20 relative">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--badge-bg)] border border-[var(--badge-border)] text-[var(--badge-text)] text-xs font-semibold mb-3">
+            <i data-lucide="mic" class="w-3.5 h-3.5 text-[var(--accent-primary)] animate-pulse"></i>
+            <span>Interactive Voice Intelligence</span>
+          </div>
+          <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-[var(--text-primary)] tracking-tight">
+            MEET AKAI — <span class="text-[var(--accent-primary)]">VOICE IN ACTION</span>
+          </h2>
+          <p class="mt-3 text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
+            Click the microphone or type below. AkAI will speak back to you using native browser speech synthesis!
+          </p>
+        </div>
+
+        <!-- Voice Assistant Card -->
+        <div class="akai-panel rounded-3xl p-6 sm:p-8 shadow-xl shadow-[var(--accent-glow)]">
+          
+          <!-- Status Header -->
+          <div class="flex items-center justify-between pb-4 border-b border-[var(--border-subtle)] mb-5">
+            <div class="flex items-center gap-3">
+              <div class="relative">
+                <div id="statusDot" class="w-3 h-3 rounded-full bg-emerald-500"></div>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="font-display text-sm font-bold text-[var(--text-primary)]">AkAI Voice Engine</span>
+                  <span class="text-[10px] font-mono text-[var(--badge-text)] bg-[var(--badge-bg)] border border-[var(--badge-border)] px-2 py-0.5 rounded-full">Google Web Speech</span>
+                </div>
+                <p id="statusDesc" class="text-xs text-[var(--text-muted)]">Ready — speak or type a prompt</p>
+              </div>
+            </div>
+
+            <!-- Waveform visualizer -->
+            <div id="equalizer" class="flex items-center gap-1 h-7 px-3 py-1 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] opacity-40">
+              <div class="wave-bar bg-[var(--accent-primary)]"></div>
+              <div class="wave-bar bg-[var(--accent-primary)]"></div>
+              <div class="wave-bar bg-[var(--accent-primary)]"></div>
+              <div class="wave-bar bg-[var(--accent-primary)]"></div>
+              <div class="wave-bar bg-[var(--accent-primary)]"></div>
+              <div class="wave-bar bg-[var(--accent-primary)]"></div>
+              <div class="wave-bar bg-[var(--accent-primary)]"></div>
+              <div class="wave-bar bg-[var(--accent-primary)]"></div>
+            </div>
+          </div>
+
+          <!-- Chat Transcript Box -->
+          <div id="chatHistory" class="space-y-3 max-h-72 overflow-y-auto mb-5 pr-2">
+            <div class="flex items-start gap-2.5">
+              <div class="w-7 h-7 rounded-lg bg-[var(--badge-bg)] border border-[var(--badge-border)] flex items-center justify-center shrink-0 mt-0.5">
+                <i data-lucide="bot" class="w-4 h-4 text-[var(--accent-primary)]"></i>
+              </div>
+              <div class="max-w-[85%] rounded-2xl rounded-tl-none bg-[var(--bg-surface)] text-[var(--text-primary)] border border-[var(--border-subtle)] px-4 py-2.5 text-xs sm:text-sm">
+                <span class="font-semibold text-[var(--accent-primary)] block text-[10px] mb-0.5">AkAI Assistant</span>
+                Hello! I am AkAI, an AI revenue recovery and business automation system. How can I help your business capture more leads and recover lost quotes today?
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Prompts -->
+          <div class="mb-4">
+            <div class="text-[11px] text-[var(--text-muted)] font-medium mb-2 flex items-center gap-1.5">
+              <i data-lucide="sparkles" class="w-3 h-3 text-[var(--accent-primary)]"></i>
+              <span>Test Prompts (Click to ask):</span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button onclick="askPrompt('How do you handle missed calls?')" class="text-[11px] px-3 py-1 rounded-full bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:border-[var(--border-accent)] transition-all cursor-pointer">
+                "How do you handle missed calls?"
+              </button>
+              <button onclick="askPrompt('Can you recover cold estimates?')" class="text-[11px] px-3 py-1 rounded-full bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:border-[var(--border-accent)] transition-all cursor-pointer">
+                "Can you recover cold estimates?"
+              </button>
+              <button onclick="askPrompt('How can I book a call with Farhan?')" class="text-[11px] px-3 py-1 rounded-full bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:border-[var(--border-accent)] transition-all cursor-pointer">
+                "Book call with Farhan"
+              </button>
+            </div>
+          </div>
+
+          <!-- Input Bar -->
+          <form id="chatForm" onsubmit="handleSend(event)" class="flex items-center gap-2">
+            <button type="button" id="micBtn" onclick="toggleSpeechRecognition()" class="p-3 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-medium)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--accent-primary)] cursor-pointer transition-all" title="Click to speak">
+              <i data-lucide="mic" class="w-5 h-5"></i>
+            </button>
+            <input type="text" id="chatInput" placeholder="Type or speak a question for AkAI..." class="flex-1 bg-[var(--bg-surface)] border border-[var(--border-medium)] rounded-xl px-4 py-3 text-xs sm:text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--border-accent)]" />
+            <button type="submit" class="p-3 rounded-xl bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white font-bold hover:opacity-95 cursor-pointer shadow-md shadow-[var(--accent-glow)]">
+              <i data-lucide="send" class="w-4 h-4"></i>
+            </button>
+          </form>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: COMPLIMENTARY STRATEGIC AUDIT FORM -->
+    <section id="contact" class="py-16 sm:py-20 relative bg-[var(--bg-surface)] border-t border-[var(--border-subtle)]">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="akai-panel rounded-3xl p-6 sm:p-12 shadow-xl shadow-[var(--accent-glow)]">
+          <div class="text-center max-w-xl mx-auto mb-8">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--badge-bg)] border border-[var(--badge-border)] text-[var(--badge-text)] text-xs font-semibold mb-3">
+              <i data-lucide="search" class="w-3.5 h-3.5 text-[var(--accent-primary)]"></i>
+              <span>Complimentary 10-Minute Audit</span>
+            </div>
+            <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-[var(--text-primary)] tracking-tight">
+              LET'S FIND WHAT'S <span class="text-[var(--accent-primary)]">LEAKING</span>
+            </h2>
+            <p class="mt-2 text-xs sm:text-sm text-[var(--text-secondary)]">
+              Submit your details below for a forensic breakdown of your lead response and conversion pipeline.
+            </p>
+          </div>
+
+          <!-- Form (Powered by FormSubmit) -->
+          <form action="https://formsubmit.co/fk111389@gmail.com" method="POST" class="space-y-4 max-w-xl mx-auto">
+            <!-- Hidden Configuration for FormSubmit -->
+            <input type="hidden" name="_subject" value="🔥 New AkAI Revenue Leak Audit Request!" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-[var(--text-secondary)] mb-1.5">Your Name *</label>
+                <input type="text" name="name" required placeholder="John Doe" class="w-full bg-[var(--bg-card)] border border-[var(--border-medium)] rounded-xl px-4 py-3 text-xs sm:text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--border-accent)]" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-[var(--text-secondary)] mb-1.5">Your Email *</label>
+                <input type="email" name="email" required placeholder="john@example.com" class="w-full bg-[var(--bg-card)] border border-[var(--border-medium)] rounded-xl px-4 py-3 text-xs sm:text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--border-accent)]" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-[var(--text-secondary)] mb-1.5">Company Name</label>
+                <input type="text" name="company" placeholder="Apex Services" class="w-full bg-[var(--bg-card)] border border-[var(--border-medium)] rounded-xl px-4 py-3 text-xs sm:text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--border-accent)]" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-[var(--text-secondary)] mb-1.5">Industry</label>
+                <select name="industry" class="w-full bg-[var(--bg-card)] border border-[var(--border-medium)] rounded-xl px-4 py-3 text-xs sm:text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--border-accent)]">
+                  <option value="HVAC">HVAC & Home Services</option>
+                  <option value="Roofing">Roofing</option>
+                  <option value="Solar">Solar</option>
+                  <option value="Real Estate">Real Estate</option>
+                  <option value="Clinic">Clinic / Healthcare</option>
+                  <option value="Other">Other Service Business</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-[var(--text-secondary)] mb-1.5">What is your biggest revenue bottleneck?</label>
+              <textarea name="message" rows="3" placeholder="e.g. Missed calls on weekends, quotes taking 3 weeks to close..." class="w-full bg-[var(--bg-card)] border border-[var(--border-medium)] rounded-xl px-4 py-3 text-xs sm:text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--border-accent)] resize-none"></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-4 px-6 rounded-xl font-display text-sm font-extrabold text-white bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] hover:opacity-95 shadow-xl shadow-[var(--accent-glow)] flex items-center justify-center gap-2 cursor-pointer transition-all">
+              <i data-lucide="search" class="w-4 h-4"></i>
+              <span>GET MY FREE 10-MINUTE AUDIT</span>
+            </button>
+          </form>
+
+          <!-- Direct Calendly Link -->
+          <div class="mt-8 pt-6 border-t border-[var(--border-subtle)] text-center">
+            <p class="text-xs text-[var(--text-muted)] mb-3">Prefer to book an immediate strategy session?</p>
+            <a href="https://calendly.com/fk111389/15-minute-ai-audit-call" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-[var(--accent-primary)] bg-[var(--badge-bg)] border border-[var(--border-accent)] hover:opacity-90">
+              <i data-lucide="calendar" class="w-4 h-4"></i>
+              <span>15-Minute Direct Call with Farhan Khan (Calendly)</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="py-12 border-t border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-muted)] text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-[var(--accent-primary)] to-[var(--accent-secondary)] p-[1px] flex items-center justify-center">
+          <div class="w-full h-full bg-[var(--bg-card)] rounded-[7px] flex items-center justify-center">
+            <i data-lucide="bot" class="w-4 h-4 text-[var(--accent-primary)]"></i>
+          </div>
+        </div>
+        <div>
+          <span class="font-display font-extrabold text-sm tracking-wider text-[var(--text-primary)]">
+            AK<span class="text-[var(--accent-primary)]">AI</span>
+          </span>
+          <p class="text-[11px] text-[var(--text-muted)]">AI Revenue Recovery & Business Automation Systems</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs font-medium text-[var(--text-secondary)]">
+        <a href="mailto:fk111389@gmail.com" class="hover:text-[var(--accent-primary)] flex items-center gap-1">
+          <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+          <span>fk111389@gmail.com</span>
+        </a>
+        <span>•</span>
+        <a href="https://www.linkedin.com/in/farhan-khan-325925429" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--accent-primary)] flex items-center gap-1">
+          <i data-lucide="linkedin" class="w-3.5 h-3.5"></i>
+          <span>LinkedIn</span>
+        </a>
+        <span>•</span>
+        <a href="https://calendly.com/fk111389/15-minute-ai-audit-call" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--accent-primary)] flex items-center gap-1">
+          <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+          <span>Calendly</span>
+        </a>
+      </div>
+
+      <div class="text-[11px] text-[var(--text-muted)]">
+        © 2026 AkAI — Founded by Farhan Khan. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MOBILE STICKY BAR ================= -->
+  <aside class="fixed bottom-0 left-0 right-0 z-40 p-3 bg-[var(--bg-nav)] backdrop-blur-xl border-t border-[var(--border-subtle)] md:hidden">
+    <div class="flex items-center gap-2 max-w-md mx-auto">
+      <a href="#demo-section" class="flex-1 py-3 px-3 rounded-xl font-display text-xs font-bold text-white bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] flex items-center justify-center gap-1.5 shadow-lg shadow-[var(--accent-glow)]">
+        <i data-lucide="mic" class="w-3.5 h-3.5"></i>
+        <span>TALK TO AKAI</span>
+      </a>
+      <a href="https://calendly.com/fk111389/15-minute-ai-audit-call" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 px-3 rounded-xl font-display text-xs font-bold text-[var(--text-primary)] bg-[var(--bg-surface)] border border-[var(--border-medium)] flex items-center justify-center gap-1.5">
+        <i data-lucide="calendar" class="w-3.5 h-3.5 text-[var(--accent-primary)]"></i>
+        <span>BOOK CALL</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ================= SCRIPT LOGIC ================= -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Theme Toggle Function
+    function toggleTheme() {
+      const isLight = document.body.classList.toggle('theme-light');
+      const icon = document.getElementById('themeIcon');
+      if (isLight) {
+        icon.setAttribute('data-lucide', 'moon');
+      } else {
+        icon.setAttribute('data-lucide', 'sun');
+      }
+      lucide.createIcons();
+    }
+
+    // Interactive Voice Demo Simulation & Web Speech
+    const chatHistory = document.getElementById('chatHistory');
+    const chatInput = document.getElementById('chatInput');
+    const statusDesc = document.getElementById('statusDesc');
+    const equalizer = document.getElementById('equalizer');
+    const statusDot = document.getElementById('statusDot');
+
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1.05;
+        utterance.pitch = 1.0;
+        
+        utterance.onstart = () => {
+          equalizer.style.opacity = '1';
+          statusDot.className = 'w-3 h-3 rounded-full bg-blue-500 animate-ping';
+          statusDesc.textContent = 'AI Speaking...';
+        };
+
+        utterance.onend = () => {
+          equalizer.style.opacity = '0.4';
+          statusDot.className = 'w-3 h-3 rounded-full bg-emerald-500';
+          statusDesc.textContent = 'Ready — speak or type a prompt';
+        };
+
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function appendMessage(sender, text) {
+      const isUser = sender === 'user';
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `flex items-start gap-2.5 ${isUser ? 'justify-end' : ''}`;
+
+      if (!isUser) {
+        msgDiv.innerHTML = `
+          <div class="w-7 h-7 rounded-lg bg-[var(--badge-bg)] border border-[var(--badge-border)] flex items-center justify-center shrink-0 mt-0.5">
+            <i data-lucide="bot" class="w-4 h-4 text-[var(--accent-primary)]"></i>
+          </div>
+          <div class="max-w-[85%] rounded-2xl rounded-tl-none bg-[var(--bg-surface)] text-[var(--text-primary)] border border-[var(--border-subtle)] px-4 py-2.5 text-xs sm:text-sm">
+            <span class="font-semibold text-[var(--accent-primary)] block text-[10px] mb-0.5">AkAI Assistant</span>
+            ${text}
+          </div>
+        `;
+      } else {
+        msgDiv.innerHTML = `
+          <div class="max-w-[85%] rounded-2xl rounded-tr-none bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white px-4 py-2.5 text-xs sm:text-sm shadow-sm">
+            <span class="font-semibold text-white/90 block text-[10px] mb-0.5">You</span>
+            ${text}
+          </div>
+          <div class="w-7 h-7 rounded-lg bg-[var(--badge-bg)] border border-[var(--badge-border)] flex items-center justify-center shrink-0 mt-0.5">
+            <i data-lucide="user" class="w-4 h-4 text-[var(--accent-primary)]"></i>
+          </div>
+        `;
+      }
+
+      chatHistory.appendChild(msgDiv);
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+      lucide.createIcons();
+    }
+
+    function generateResponse(query) {
+      const q = query.toLowerCase();
+      if (q.includes('missed call')) {
+        return "When a customer call goes unanswered, AkAI's webhook triggers in under 30 seconds, dispatches a conversational SMS, qualifies the customer's urgent need, and locks in a calendar appointment automatically.";
+      } else if (q.includes('estimate') || q.includes('quote')) {
+        return "Our estimate recovery engine systematically revives cold proposals through personalized, objection-handling follow-ups across SMS and email — recovering an average of 14% to 26% of lost revenue.";
+      } else if (q.includes('farhan') || q.includes('book') || q.includes('call')) {
+        return "You can book a direct 15-minute Revenue Leak Audit with Farhan Khan using the Calendly link on this page, or submit your business information in the audit form below!";
+      } else {
+        return `I understand you are asking about "${query}". AkAI's custom automation infrastructure connects your phone, CRM, and calendar to ensure zero revenue gets stuck. Would you like to see our estimate recovery or missed-call workflows?`;
+      }
+    }
+
+    function handleSend(e) {
+      if (e) e.preventDefault();
+      const val = chatInput.value.trim();
+      if (!val) return;
+
+      appendMessage('user', val);
+      chatInput.value = '';
+
+      setTimeout(() => {
+        const reply = generateResponse(val);
+        appendMessage('assistant', reply);
+        speakText(reply);
+      }, 500);
+    }
+
+    function askPrompt(text) {
+      chatInput.value = text;
+      handleSend();
+    }
+
+    // Speech Recognition (Microphone)
+    let recognition = null;
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.lang = 'en-US';
+
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        chatInput.value = transcript;
+        handleSend();
+      };
+
+      recognition.onend = () => {
+        document.getElementById('micBtn').classList.remove('bg-rose-500/20', 'text-rose-500', 'animate-pulse');
+      };
+    }
+
+    function toggleSpeechRecognition() {
+      if (!recognition) {
+        alert("Speech recognition is not supported in this browser. Please type your message.");
+        return;
+      }
+      try {
+        recognition.start();
+        document.getElementById('micBtn').classList.add('bg-rose-500/20', 'text-rose-500', 'animate-pulse');
+        statusDesc.textContent = 'Listening for your voice...';
+      } catch (err) {
+        recognition.stop();
+      }
+    }
+  </script>
+</body>
+</html>

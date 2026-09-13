@@ -1,0 +1,7 @@
+{
+  "name": "AkAI - AI Revenue Recovery & Business Automation",
+  "description": "Enterprise AI voice agents, revenue recovery systems, lead follow-up, and automated n8n workflows for modern businesses.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
