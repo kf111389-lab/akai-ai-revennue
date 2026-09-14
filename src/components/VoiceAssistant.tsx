@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Mic, MicOff, Volume2, VolumeX, Send, Sparkles, Bot, User, CheckCircle2, RotateCcw } from 'lucide-react';
-import { getAkAIResponse, VoiceSynthesizer } from '../utils/voiceAssistant';
+import { getAkAIResponseAsync, VoiceSynthesizer } from '../utils/voiceAssistant';
 import { ChatMessage } from '../types';
 
 interface VoiceAssistantProps {
@@ -53,7 +53,7 @@ export const VoiceAssistant: React.FC<VoiceAssistantProps> = ({
   }, [messages, isSpeaking, isListening]);
 
   // Handle incoming user statement and AI answer
-  const handleUserMessage = (userText: string) => {
+  const handleUserMessage = async (userText: string) => {
     if (!userText.trim()) return;
 
     const userMsg: ChatMessage = {
@@ -63,12 +63,16 @@ export const VoiceAssistant: React.FC<VoiceAssistantProps> = ({
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     };
 
-    setMessages(prev => [...prev, userMsg]);
+    const newHistory = [...messages, userMsg];
+    setMessages(newHistory);
     setStatusText("AkAI is analyzing...");
 
-    // Get smart response
-    setTimeout(() => {
-      const response = getAkAIResponse(userText);
+    try {
+      const response = await getAkAIResponseAsync(
+        userText,
+        newHistory.map(m => ({ sender: m.sender, text: m.text }))
+      );
+
       const aiMsg: ChatMessage = {
         id: `ai-${Date.now()}`,
         sender: 'assistant',
@@ -99,7 +103,10 @@ export const VoiceAssistant: React.FC<VoiceAssistantProps> = ({
       } else {
         setStatusText("Conversation active — Ask your next question");
       }
-    }, 400);
+    } catch (err) {
+      console.error("AI error:", err);
+      setStatusText("Conversation active — Ask your next question");
+    }
   };
 
   // Speech Recognition setup (Google Web Speech)

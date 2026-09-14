@@ -453,40 +453,130 @@
       processQuery(prompt);
     }
 
-    function processQuery(query) {
+    async function processQuery(query) {
       const chatBox = document.getElementById('chatBox');
       
       // User bubble
       const userDiv = document.createElement('div');
-      userDiv.className = 'p-3 rounded-xl bg-blue-600/20 border border-blue-500/30 text-white ml-auto max-w-[85%]';
-      userDiv.innerHTML = '<strong>You:</strong> ' + query;
+      userDiv.className = 'p-3 rounded-xl bg-[var(--accent-primary)]/20 border border-[var(--border-accent)] text-[var(--text-primary)] ml-auto max-w-[85%]';
+      userDiv.innerHTML = '<strong class="text-[var(--accent-primary)]">You:</strong> ' + escapeHtml(query);
       chatBox.appendChild(userDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
 
-      // AI Response logic
-      let reply = "AkAI captures missed calls, qualifies inquiries, and syncs directly into your CRM. You can schedule a 15-minute roadmap call with Farhan Khan to see your custom workflow!";
-      const q = query.toLowerCase();
+      // Temporary typing indicator
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'p-3 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-[var(--text-muted)] text-xs max-w-[85%] animate-pulse';
+      typingDiv.textContent = 'AkAI is thinking...';
+      chatBox.appendChild(typingDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
 
-      if (q.includes('missed') || q.includes('call')) {
-        reply = "When a customer calls and nobody answers, AkAI instantly sends a 2-way AI text or voice callback within 30 seconds to qualify them and book them into your calendar before they call a competitor.";
-      } else if (q.includes('price') || q.includes('cost') || q.includes('fee')) {
-        reply = "We don't charge per-seat SaaS subscription fees. AkAI builds custom, owned n8n workflows tailored to your pipeline. Book a free 10-minute audit to see exact implementation scope!";
-      } else if (q.includes('integrate') || q.includes('crm') || q.includes('system')) {
-        reply = "AkAI integrates seamlessly with HubSpot, GoHighLevel, Salesforce, Google Sheets, Twilio, Cal.com, Slack, and any REST API via custom n8n nodes.";
-      } else if (q.includes('book') || q.includes('audit') || q.includes('call') || q.includes('farhan')) {
-        reply = "You can book a 15-minute strategy call with founder Farhan Khan directly on Calendly using the buttons on this page!";
+      let reply = '';
+
+      // Try server-side Gemini API first
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 4000);
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: query }),
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.text) {
+            reply = data.text.trim();
+          }
+        }
+      } catch (e) {
+        // Fallback to local intelligence
       }
 
-      // Assistant bubble
-      setTimeout(() => {
-        const aiDiv = document.createElement('div');
-        aiDiv.className = 'p-3 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-[var(--text-secondary)] max-w-[85%]';
-        aiDiv.innerHTML = '<strong class="text-[var(--accent-primary)]">AkAI:</strong> ' + reply;
-        chatBox.appendChild(aiDiv);
-        chatBox.scrollTop = chatBox.scrollHeight;
-        speak(reply);
-      }, 300);
+      if (!reply) {
+        reply = getLocalSmartResponse(query);
+      }
 
+      // Remove typing indicator and render Assistant bubble
+      if (typingDiv.parentNode) {
+        typingDiv.parentNode.removeChild(typingDiv);
+      }
+
+      const aiDiv = document.createElement('div');
+      aiDiv.className = 'p-3 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-[var(--text-primary)] max-w-[85%]';
+      aiDiv.innerHTML = '<strong class="text-[var(--accent-primary)]">AkAI:</strong> ' + escapeHtml(reply);
+      chatBox.appendChild(aiDiv);
       chatBox.scrollTop = chatBox.scrollHeight;
+      speak(reply);
+    }
+
+    function escapeHtml(str) {
+      return (str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function getLocalSmartResponse(query) {
+      const q = (query || '').toLowerCase().trim();
+      const isUrdu = /[\u0600-\u06FF]/.test(q) || /(ki|ka|ke|ko|kya|kia|hai|hain|ho|batao|btao|details|do|dy|krna|karna|karta|krte|kesa|kese|kaise|kitna|kharcha|paisa|paise|kon|farhan|soller|bijli|chahiye|bolo)/.test(q);
+
+      if (/soller|solar|panel|rooftop|bijli/.test(q)) {
+        return isUrdu
+          ? "AkAI solar companies ke liye lead capture automate karta hai: Inbound calls aur form leads ko 90 seconds mein qualify karta hai (bijli ka bill, chhat ki halat, address) aur direct site survey book karwata hai. Saath hi unclosed solar quotes ko auto-follow-up se close karwata hai."
+          : "For Solar businesses, AkAI instantly qualifies inbound leads (utility bill amount, roof age, shading) and books site audits directly onto your calendar, while reviving stalled solar proposals through automated multi-channel sequences.";
+      }
+
+      if (/price|pricing|cost|fee|kharcha|kitna|kitnay|paise|budget/.test(q)) {
+        return isUrdu
+          ? "Hamara pricing model transparent hai: Pehle 10-minute ka Free Revenue Leak Audit hota hai. Us ke baad tailored one-time system build aur monthly maintenance plan hota hai, baghair kisi per-seat recurring fees ke."
+          : "AkAI pricing is transparent: Every business begins with a complimentary 10-minute Revenue Leak Audit, followed by a flat-rate build and monthly management with zero per-seat software markups.";
+      }
+
+      if (/farhan|khan|founder|creator|owner|malik|kon hai/.test(q)) {
+        return isUrdu
+          ? "Farhan Khan AkAI ke founder aur automation architect hain. Woh high-ticket lead businesses ke liye custom AI Voice agents aur n8n pipelines build karte hain. Aap un se direct 15-minute strategy call book kar sakte hain."
+          : "Farhan Khan is the founder and automation architect of AkAI. He builds custom 24/7 AI Voice systems and revenue pipelines for lead-driven businesses. You can book a 1-on-1 strategy call with him.";
+      }
+
+      if (/miss|call|phone|unanswered|lost|nahi uthaya/.test(q)) {
+        return isUrdu
+          ? "Jab bhi koi customer call miss hoti hai, AkAI under 90 seconds automatic SMS aur AI callback initiate karta hai, customer ko qualify karta hai aur appointment schedule kar deta hai."
+          : "When a customer calls and nobody answers, AkAI instantly triggers a 2-way AI text or voice callback within 90 seconds to qualify the lead and secure the appointment before competitors can respond.";
+      }
+
+      if (/estimate|quote|proposal|bheja|invoice|follow.?up/.test(q)) {
+        return isUrdu
+          ? "AkAI aapke bheje gaye pending quotes ko automated smart follow-ups se track karta hai, customer ke objections resolve karta hai aur unclosed deals ko revenue mein badal deta hai."
+          : "AkAI automates conversational, non-intrusive follow-up sequences across SMS, email, and voice for all delivered quotes, reviving dormant estimates and closing deals that would otherwise slip away.";
+      }
+
+      if (/roof|roofing|hvac|ac|heat|cooling|chhat/.test(q)) {
+        return isUrdu
+          ? "Roofing aur HVAC contractors ke liye AkAI 24/7 emergency dispatch, instant storm call intake aur pending estimate revive karne ke automated workflows provide karta hai."
+          : "For Roofing & HVAC, AkAI delivers 24/7 emergency intake triage, storm-surge call capture, and automated follow-ups for pending roof inspections and equipment replacement estimates.";
+      }
+
+      if (/clinic|dentist|dental|doctor|patient|med spa/.test(q)) {
+        return isUrdu
+          ? "Clinics aur dentists ke liye AkAI 24/7 patient appointments book karta hai aur automated SMS reminders se no-show rates 80% tak kam karta hai."
+          : "For Dental & Clinic practices, AkAI provides 24/7 appointment scheduling, automated 3-tier no-show reduction reminders, and patient recall campaigns.";
+      }
+
+      if (/real estate|property|zameen|makan|flat/.test(q)) {
+        return isUrdu
+          ? "Real estate ke liye AkAI ads se anay wali leads ko foran qualify karta hai (budget, location, timeline) aur property walkthrough book kar deta hai."
+          : "In Real Estate, AkAI qualifies buyers and sellers within 2 minutes of ad submission and books walkthroughs directly into your calendar.";
+      }
+
+      if (/book|schedule|call|meeting|audit|rabta|appointment/.test(q)) {
+        return isUrdu
+          ? "Aap Farhan Khan ke sath direct 15-minute strategy call book kar sakte hain ya free 10-minute revenue audit request kar sakte hain!"
+          : "You can book a 15-minute strategy call with founder Farhan Khan directly on Calendly using the buttons on this page!";
+      }
+
+      if (isUrdu) {
+        return `Aap ne "${query.trim()}" ke baray mein poocha. AkAI businesses ke missed calls, pending quotes aur lead response ko AI Voice aur n8n automations se hal karta hai. Kya aap is ke baray mein mazeed detail chahte hain ya Farhan Khan se 15-minute strategy call schedule karna chahein ge?`;
+      }
+
+      return `Regarding your inquiry about "${query.trim()}": AkAI builds custom 24/7 AI Voice systems, instant missed-call lead capture, and automated quote recovery pipelines tailored to your business. Would you like to request our 10-minute Free Audit or book a strategy session with Farhan Khan?`;
     }
   </script>
 </body>
